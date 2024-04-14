@@ -303,4 +303,36 @@ describe('test/mongoose.test.js', () => {
       assert(book.updatedAt instanceof Date);
     });
   });
+
+  describe('plugins with app object', () => {
+    let app;
+    before(async function() {
+      app = mm.app({
+        baseDir: 'apps/mongoose-aplugin',
+      });
+      await app.ready();
+    });
+
+    after(async function() {
+      await app.close();
+    });
+    afterEach(mm.restore);
+    afterEach(async function() {
+      await app.model.Book.deleteMany({});
+      await app.model.User.deleteMany({});
+    });
+
+    it('should has get property of app', async function() {
+      const user = await app.model.User.create({});
+      const book = await app.model.Book.create({});
+      assert(user);
+      assert(user.lastMod instanceof Date);
+      assert(user.updatedAt instanceof Date);
+      assert(user.the_key === 'AAAAAAAA');
+      assert(book);
+      assert(book.lastMod instanceof Date);
+      assert(book.updatedAt instanceof Date);
+      assert(book.the_key === 'AAAAAAAA');
+    });
+  });
 });

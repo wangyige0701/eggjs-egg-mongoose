@@ -1,7 +1,7 @@
 {
-  "name": "egg-mongoose",
+  "name": "@wangyg/egg-mongoose",
   "version": "4.0.1",
-  "description": "egg mongoose plugin",
+  "description": "egg mongoose plugin, expanded from eggjs/egg-mongoose, add aPlugins config",
   "eggPlugin": {
     "name": "mongoose"
   },
